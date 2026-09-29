@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>LA ROUE DES BO</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div id="loader" class="loader">
+    <div class="loader-bg"></div>
+    <div class="loader-content">
+      <div class="loader-wheel">
+        <div class="loader-wheel-ring"></div>
+        <div class="loader-wheel-ring loader-wheel-ring--2"></div>
+        <div class="loader-wheel-dot"></div>
+      </div>
+      <h1 class="loader-title">
+        <span class="loader-title-line">LA ROUE</span>
+        <span class="loader-title-line loader-title-line--accent">DES BO</span>
+      </h1>
+      <div class="loader-bar">
+        <div class="loader-bar-fill" id="loader-bar-fill"></div>
+      </div>
+      <p class="loader-tip" id="loader-tip">Préparation du plateau…</p>
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div id="app" class="app" hidden>
+
+    <div class="bg-glow bg-glow--1"></div>
+    <div class="bg-glow bg-glow--2"></div>
+    <div class="bg-glow bg-glow--3"></div>
+
+    <header class="app-header">
+      <p class="app-kicker">✦ ÉVÉNEMENT SPÉCIAL ✦</p>
+      <h1 class="app-title">LA ROUE DES BO</h1>
+      <p class="app-subtitle">Tournez les deux roues pour révéler l'équipe et le nombre de cartes gâchées</p>
+    </header>
+
+    <main class="wheels-section">
+
+      <section class="wheel-panel wheel-panel--team" id="panel-team">
+        <h2 class="wheel-panel-title">🎯 ÉQUIPE</h2>
+        <div class="wheel-wrap">
+          <div class="wheel-pointer wheel-pointer--team"></div>
+          <div class="wheel-outer wheel-outer--team">
+            <div class="wheel wheel--team" id="wheel-team"></div>
+            <div class="wheel-hub wheel-hub--team">★</div>
+          </div>
+          <div class="wheel-glow wheel-glow--team"></div>
+        </div>
+        <button class="spin-btn spin-btn--team" id="btn-team" type="button">
+          <span class="spin-btn-label">🎯 TOURNER LA ROUE</span>
+        </button>
+        <div class="wheel-status" id="status-team" aria-live="polite"></div>
+      </section>
+
+      <section class="wheel-panel wheel-panel--cards" id="panel-cards">
+        <h2 class="wheel-panel-title">🃏 NOMBRE DE CARTES</h2>
+        <div class="wheel-wrap">
+          <div class="wheel-pointer wheel-pointer--cards"></div>
+          <div class="wheel-outer wheel-outer--cards">
+            <div class="wheel wheel--cards" id="wheel-cards"></div>
+            <div class="wheel-hub wheel-hub--cards">🃏</div>
+          </div>
+          <div class="wheel-glow wheel-glow--cards"></div>
+        </div>
+        <button class="spin-btn spin-btn--cards" id="btn-cards" type="button">
+          <span class="spin-btn-label">🎯 TOURNER LA ROUE</span>
+        </button>
+        <div class="wheel-status" id="status-cards" aria-live="polite"></div>
+      </section>
+
+    </main>
+
+    <section class="pending-recap" id="pending-recap" hidden>
+      <div class="pending-chip" id="pending-team-chip" hidden>
+        <span class="pending-chip-label">ÉQUIPE</span>
+        <span class="pending-chip-value" id="pending-team-value">—</span>
+      </div>
+      <div class="pending-plus">+</div>
+      <div class="pending-chip" id="pending-cards-chip" hidden>
+        <span class="pending-chip-label">CARTES</span>
+        <span class="pending-chip-value" id="pending-cards-value">—</span>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <h2 class="section-title">TOTAL DES CARTES PAR ÉQUIPE</h2>
+      <div class="stats-grid" id="stats-grid"></div>
+    </section>
+
+    <section class="history-section">
+      <h2 class="section-title">HISTORIQUE DES TIRAGES</h2>
+      <div class="history-list" id="history-list"></div>
+      <p class="history-empty" id="history-empty">Aucun tirage pour le moment. Tournez les deux roues !</p>
+    </section>
+
+    <footer class="app-footer">
+      <button class="reset-link" id="btn-reset" type="button">Réinitialiser les données</button>
+    </footer>
+  </div>
+
+  <!-- RESULT OVERLAY -->
+  <div class="result-overlay" id="result-overlay" hidden>
+    <div class="result-overlay-bg"></div>
+    <div class="result-particles" id="result-particles"></div>
+    <div class="result-stage" id="result-stage">
+      <div class="result-flyin result-flyin--team" id="result-flyin-team">
+        <span class="result-flyin-label">ÉQUIPE</span>
+        <span class="result-flyin-value" id="result-flyin-team-value">—</span>
+      </div>
+      <div class="result-flyin-plus" id="result-flyin-plus">+</div>
+      <div class="result-flyin result-flyin--cards" id="result-flyin-cards">
+        <span class="result-flyin-label">CARTES</span>
+        <span class="result-flyin-value" id="result-flyin-cards-value">—</span>
+      </div>
+    </div>
+    <div class="result-card" id="result-card">
+      <div class="result-card-shine"></div>
+      <div class="result-card-icon">🃏</div>
+      <p class="result-card-kicker">🎯 TIRAGE TERMINÉ</p>
+      <h3 class="result-card-team" id="result-card-team">ÉQUIPE 1</h3>
+      <p class="result-card-action">doit tirer</p>
+      <p class="result-card-cards" id="result-card-cards">0 CARTES</p>
+      <p class="result-card-saved" id="result-card-saved">Résultat enregistré ✓</p>
+      <button class="result-card-close" id="result-card-close" type="button">Continuer</button>
+    </div>
+  </div>
+
+  <!-- RESET CONFIRM MODAL -->
+  <div class="modal-backdrop" id="reset-modal" hidden>
+    <div class="modal">
+      <p class="modal-icon">⚠️</p>
+      <p class="modal-text">Voulez-vous vraiment supprimer tout l'historique et remettre les compteurs à zéro ?</p>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn--cancel" id="reset-cancel" type="button">ANNULER</button>
+        <button class="modal-btn modal-btn--confirm" id="reset-confirm" type="button">RÉINITIALISER</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCK TOAST -->
+  <div class="lock-toast" id="lock-toast" hidden></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
